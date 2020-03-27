@@ -21,9 +21,14 @@ const jokesRouter = require('../jokes/jokes-router.js');
 
 const server = express();
 
+// const corsConfig = {
+//     origin: 'http://localhost:3000',
+//     methods: "GET,POST",
+//     preflightContinue: true
+// }
 server.use(helmet());
-server.use(cors());
 server.use(express.json());
+server.use(cors())
 // server.use(session(sessionConfig))
 
 server.use('/api/auth', authRouter);

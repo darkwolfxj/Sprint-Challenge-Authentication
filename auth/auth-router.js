@@ -21,7 +21,9 @@ router.post('/register', (req, res) => {
     console.log(password)
     db("users")
         .insert({ username, password })
-        .then(() => res.status(201).json({ message: "Successfully created user account." }))
+        .then(() => {
+            res.status(201).json({ message: "Successfully created user account." })
+        })
         .catch(({ name, message }) => res.status(500).json({ name, message }))
 });
 
@@ -37,7 +39,6 @@ router.post('/login', (req, res) => {
                     //     user: user.username,
                     //     id: user.id
                     // }
-                    
                     res.status(200).json({ message: "Successfully logged in.", token})
                 } else { res.status(401).json({ message: "Invalid Credentials." }) }
             })
